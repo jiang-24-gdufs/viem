@@ -1,7 +1,5 @@
-import { generatePrivateKey } from 'viem/accounts'
-import fs from 'fs';
+import { generatePrivateKey, privateKeyToAccount } from 'viem/accounts'
 import { createObjectCsvWriter } from 'csv-writer';
-import { privateKeyToAccount } from 'viem/accounts'
 
 // 假设这是你的数据
 let data = Array(10).fill('_').map((_, index) => {
@@ -13,7 +11,6 @@ let data = Array(10).fill('_').map((_, index) => {
     publicKey: publicKey
   }
 })
-// const privateKey = generatePrivateKey()
 
 let csvWriter = createObjectCsvWriter({
   path: '../out.csv',
@@ -24,7 +21,7 @@ let csvWriter = createObjectCsvWriter({
   ],
 });
 
-csvWriter.writeRecords(data)       // 返回一个 promise
+csvWriter.writeRecords(data) 
   .then(() => {
     console.log('...Done');
   });
